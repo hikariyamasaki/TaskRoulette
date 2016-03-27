@@ -15,6 +15,9 @@
 		E4F2598B1CA7CC7A00628C35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F259891CA7CC7A00628C35 /* LaunchScreen.storyboard */; };
 		E4F259961CA7CC7A00628C35 /* TaskRouletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F259951CA7CC7A00628C35 /* TaskRouletteTests.swift */; };
 		E4F259A11CA7CC7A00628C35 /* TaskRouletteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F259A01CA7CC7A00628C35 /* TaskRouletteUITests.swift */; };
+		E4F259AF1CA7D9B200628C35 /* TaskInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F259AE1CA7D9B200628C35 /* TaskInputViewController.swift */; };
+		E4F259B11CA7DBF700628C35 /* MemberInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F259B01CA7DBF700628C35 /* MemberInputViewController.swift */; };
+		E4F259B31CA7DE2100628C35 /* TaskRouletteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F259B21CA7DE2100628C35 /* TaskRouletteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		E4F2599C1CA7CC7A00628C35 /* TaskRouletteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskRouletteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F259A01CA7CC7A00628C35 /* TaskRouletteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRouletteUITests.swift; sourceTree = "<group>"; };
 		E4F259A21CA7CC7A00628C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4F259AE1CA7D9B200628C35 /* TaskInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInputViewController.swift; sourceTree = "<group>"; };
+		E4F259B01CA7DBF700628C35 /* MemberInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberInputViewController.swift; sourceTree = "<group>"; };
+		E4F259B21CA7DE2100628C35 /* TaskRouletteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRouletteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +107,10 @@
 			children = (
 				E4F2597D1CA7CC7A00628C35 /* AppDelegate.swift */,
 				E4F2597F1CA7CC7A00628C35 /* ViewController.swift */,
+				E4F259AE1CA7D9B200628C35 /* TaskInputViewController.swift */,
 				E4F259811CA7CC7A00628C35 /* Main.storyboard */,
+				E4F259B21CA7DE2100628C35 /* TaskRouletteViewController.swift */,
+				E4F259B01CA7DBF700628C35 /* MemberInputViewController.swift */,
 				E4F259871CA7CC7A00628C35 /* Assets.xcassets */,
 				E4F259891CA7CC7A00628C35 /* LaunchScreen.storyboard */,
 				E4F2598C1CA7CC7A00628C35 /* Info.plist */,
@@ -261,6 +270,9 @@
 			files = (
 				E4F259801CA7CC7A00628C35 /* ViewController.swift in Sources */,
 				E4F2597E1CA7CC7A00628C35 /* AppDelegate.swift in Sources */,
+				E4F259AF1CA7D9B200628C35 /* TaskInputViewController.swift in Sources */,
+				E4F259B11CA7DBF700628C35 /* MemberInputViewController.swift in Sources */,
+				E4F259B31CA7DE2100628C35 /* TaskRouletteViewController.swift in Sources */,
 				E4F259861CA7CC7A00628C35 /* TaskRoulette.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
