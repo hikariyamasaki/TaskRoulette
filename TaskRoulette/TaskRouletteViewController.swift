@@ -10,24 +10,38 @@ import UIKit
 
 class TaskRouletteViewController: UIViewController {
     
-    @IBOutlet weak var rouletteView: UIView!
-    
-    @IBOutlet weak var bgRouletteView: UIView!
     let sepa = 6
+    var rouletteView:UIView!
+    var bgRouletteView:UIView!
     
        override func viewDidLoad() {
         super.viewDidLoad()
         
-        //let width = self.view.frame.width * 0.7
-        let width = self.view.frame.width * 0.8 * 0.6
-        
-        rouletteView.frame.size = CGSizeMake(width, width)
+        let width = self.view.frame.width
+        let height = self.view.frame.height
         
         
+        bgRouletteView = RouletteView(frame: CGRectMake(0,0,width * 0.8,width * 0.8))
+        bgRouletteView.center = CGPointMake(width / 2, height / 2)
+        bgRouletteView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        bgRouletteView.tag = 1
         
+        let bgwidth = bgRouletteView.frame.width
+        
+        rouletteView = RouletteView(frame: CGRectMake(0,0,bgwidth * 0.6,bgwidth * 0.6))
+        rouletteView.center = CGPointMake(bgwidth / 2, bgwidth / 2)
+        rouletteView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        
+        
+        // viewの貼り付け
+        bgRouletteView.addSubview(rouletteView)
+        self.view.addSubview(bgRouletteView)
+       
+        
+             
         // ルーレットの初期化
         initRoulette(sepa)
-        // Do any additional setup after loading the view.
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,6 +144,7 @@ class TaskRouletteViewController: UIViewController {
         let angle = 2 * M_PI / Max
         
         let r = self.rouletteView.frame.size.width * 0.4
+        
         for i in 0 ..< Int(Max) {
             let x = r * CGFloat(cos(Double(i) * angle)) + self.rouletteView.frame.size.width / 2.0
             let y = r * CGFloat(sin(Double(i) * angle)) + self.rouletteView.frame.size.height / 2.0
@@ -153,9 +168,6 @@ class TaskRouletteViewController: UIViewController {
             self.rouletteView.addSubview(number)
             
         }
-        
-
-    
         
     }
 }

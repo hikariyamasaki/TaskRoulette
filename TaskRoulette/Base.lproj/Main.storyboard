@@ -224,25 +224,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j75-h5-qfO" customClass="RouletteView" customModule="TaskRoulette" customModuleProvider="target">
-                                <rect key="frame" x="60" y="60" width="480" height="480"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Qz-df-csA" customClass="RouletteView" customModule="TaskRoulette" customModuleProvider="target">
-                                        <rect key="frame" x="96" y="96" width="288" height="288"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="8Qz-df-csA" secondAttribute="height" multiplier="1:1" id="dJl-Kp-I51"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.96640807390213013" green="0.40265750885009766" blue="0.057152874767780304" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="8Qz-df-csA" firstAttribute="centerY" secondItem="j75-h5-qfO" secondAttribute="centerY" id="4v3-UC-PSf"/>
-                                    <constraint firstItem="8Qz-df-csA" firstAttribute="centerX" secondItem="j75-h5-qfO" secondAttribute="centerX" id="6iZ-s8-aJR"/>
-                                    <constraint firstItem="8Qz-df-csA" firstAttribute="width" secondItem="j75-h5-qfO" secondAttribute="width" multiplier="0.6" id="UhM-1F-Sjs"/>
-                                    <constraint firstAttribute="width" secondItem="j75-h5-qfO" secondAttribute="height" multiplier="1:1" id="ycU-vk-QJE"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8W-hG-yju">
                                 <rect key="frame" x="235" y="538" width="130" height="30"/>
                                 <state key="normal" title="One more chance!!"/>
@@ -254,10 +235,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="U8W-hG-yju" firstAttribute="centerX" secondItem="c9v-zd-B7N" secondAttribute="centerX" id="67n-3F-nyY"/>
-                            <constraint firstItem="j75-h5-qfO" firstAttribute="centerY" secondItem="c9v-zd-B7N" secondAttribute="centerY" id="9KM-l9-KLQ"/>
-                            <constraint firstItem="j75-h5-qfO" firstAttribute="centerX" secondItem="c9v-zd-B7N" secondAttribute="centerX" id="FQF-hI-byy"/>
                             <constraint firstItem="21A-Rc-0Iy" firstAttribute="top" secondItem="U8W-hG-yju" secondAttribute="bottom" constant="32" id="ffY-13-L4P"/>
-                            <constraint firstItem="j75-h5-qfO" firstAttribute="width" secondItem="c9v-zd-B7N" secondAttribute="width" multiplier="0.8" id="g1c-A6-hiF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TaskRoulette" id="pmg-nn-sX4">
@@ -267,10 +245,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="bgRouletteView" destination="j75-h5-qfO" id="FvL-8F-1c9"/>
-                        <outlet property="rouletteView" destination="8Qz-df-csA" id="XqC-An-cS7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QsS-xM-Z1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
