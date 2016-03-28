@@ -12,30 +12,67 @@ class TaskRouletteViewController: UIViewController {
     
     @IBOutlet weak var rouletteView: UIView!
     
-    var flag = 0
+    @IBOutlet weak var bgRouletteView: UIView!
+    let sepa = 6
     
-    override func viewDidLoad() {
+       override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //let width = self.view.frame.width * 0.7
+        let width = self.view.frame.width * 0.8 * 0.6
+        
+        rouletteView.frame.size = CGSizeMake(width, width)
+        
+        
+        
+        // ルーレットの初期化
+        initRoulette(sepa)
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
     }
     
     
     @IBAction func start(sender: AnyObject) {
-        if flag == 0{
-            rouletteView.backgroundColor = UIColor.blackColor()
-            flag = 1
+        
+        // 回転アニメーション.
+        // 初期化.
+        //self.rouletteView.transform = CGAffineTransformMakeRotation(0)
+        
+        // 回転数をランダムにするところ
+        let n = Int(arc4random()) % sepa + 1
+        /*for i in 1..<(5 + n){
             
-        }else{
+            // radianで回転角度を指定(90度).
+            let angle:CGFloat = CGFloat(2 * M_PI / Double(sepa) * Double(i))
 
-            rouletteView.backgroundColor = UIColor.yellowColor()
-            flag = 0
-        }
+            // アニメーションの秒数を設定(0.5秒).
+            UIView.animateWithDuration(2.0,
+                
+                animations: { () -> Void in
+                    
+                    // 回転用のアフィン行列を生成.
+                    self.rouletteView.transform = CGAffineTransformMakeRotation(angle)
+                },
+                completion: { (Bool) -> Void in
+            })
+            
+        }*/
+        
+        
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.toValue = 2 * M_PI / Double(sepa)
+        animation.duration = 0.2 // 0.5秒でtoValue度回転
+        animation.repeatCount = Float(20 + n)   // 回数だけ繰り返す
+        //animation.cumulative = true         // 効果を累積
+        
+        // アニメーションの実行
+        rouletteView.layer.addAnimation(animation, forKey: "Routation")
+        
         
     }
     
@@ -79,4 +116,49 @@ class TaskRouletteViewController: UIViewController {
     }
     */
 
+    
+    func initRoulette(sepa:Int){
+        
+        // 1.ルーレットの円
+        // layerに cornerRadiusを指定し、円にする。
+        //self.rouletteView.layer.cornerRadius = self.rouletteView.frame.size.width / 2.0
+        //self.rouletteView.backgroundColor = UIColor.lightGrayColor()
+        
+        
+        // 2.数字を配置
+        let Max = Double(sepa)
+        let angle = 2 * M_PI / Max
+        
+        let r = self.rouletteView.frame.size.width * 0.4
+        for i in 0 ..< Int(Max) {
+            let x = r * CGFloat(cos(Double(i) * angle)) + self.rouletteView.frame.size.width / 2.0
+            let y = r * CGFloat(sin(Double(i) * angle)) + self.rouletteView.frame.size.height / 2.0
+            
+            let number = UILabel(frame: CGRectMake(0, 0, 40, 40))
+            number.backgroundColor = UIColor.whiteColor()
+            number.text = "\(i + 1)"
+            
+            // number.sizeToFit()
+            number.layer.cornerRadius = number.frame.size.width / 2.0
+            number.center = CGPointMake(x, y)
+            
+            // for ios5 and ios6
+            // NSTextAlignmentCenter, UITextAlignmentCenter
+            //number.textAlignment = 1
+            
+            // 斜めに
+            let transform:CGAffineTransform = CGAffineTransformMakeRotation(CGFloat(Double(i) * angle + M_PI_2))
+            number.transform = transform
+            
+            self.rouletteView.addSubview(number)
+            
+        }
+        
+
+    
+        
+    }
 }
+
+
+

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskInputViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TaskInputViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , InputTextTableCellDelegate{
     
     // Tableで使用する配列を設定する
     private let myItems: NSArray = ["1.仕事1", "2.仕事2", "3.仕事3"]
@@ -31,21 +31,21 @@ class TaskInputViewController: UIViewController, UITableViewDelegate, UITableVie
         myTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
         */
         
+        // 入力していたデータを空にする.
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tasks = []
+
         
         
         
 
-        // Cell名の登録をおこなう.
-        myTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-        
         // DataSourceの設定をする.
         myTableView.dataSource = self
         
         // Delegateを設定する.
         myTableView.delegate = self
         
-        // Viewに追加する.
-        self.view.addSubview(myTableView)
+       
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,13 +74,28 @@ class TaskInputViewController: UIViewController, UITableViewDelegate, UITableVie
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        // 再利用するCellを取得する.
-        let cell = tableView.dequeueReusableCellWithIdentifier("MyCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("InputTextCell", forIndexPath: indexPath) as! InputTextTableCell
         
-        // Cellに値を設定する.
-        cell.textLabel!.text = "\(myItems[indexPath.row])"
+        // delegate設定
+        cell.delegate = self
         
         return cell
     }
+    
+    // 追加
+    // MARK: - InputTextTableCellDelegate
+    func textFieldDidEndEditing(cell: InputTextTableCell, value: NSString) -> () {
+        let path = myTableView.indexPathForRowAtPoint(cell.convertPoint(cell.bounds.origin, toView: myTableView))
+        // 入力されたデータをルーレットに渡すために、AppDelegateにデータを渡す.
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tasks.append(value as String)
+
+        print("row = \(path!.row), value = \(value)")
+    }
+    
+    // MARK: - UITableViewDelegate
+    /*func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return InputTextTableCell.height()
+    }*/
     
 }
