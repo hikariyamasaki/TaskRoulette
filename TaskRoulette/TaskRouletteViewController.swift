@@ -9,7 +9,11 @@
 import UIKit
 
 class TaskRouletteViewController: UIViewController {
-
+    
+    @IBOutlet weak var rouletteView: UIView!
+    
+    var flag = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +25,19 @@ class TaskRouletteViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func start(sender: AnyObject) {
+        if flag == 0{
+            rouletteView.backgroundColor = UIColor.blackColor()
+            flag = 1
+            
+        }else{
+
+            rouletteView.backgroundColor = UIColor.yellowColor()
+            flag = 0
+        }
+        
+    }
     
 
     @IBAction func backHome(sender: AnyObject) {

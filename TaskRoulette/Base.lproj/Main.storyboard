@@ -218,6 +218,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8W-hG-yju">
                                 <rect key="frame" x="277" y="538" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="start:" destination="Omv-b8-PfV" eventType="touchUpInside" id="L3N-pE-Jdu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -236,6 +239,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="rouletteView" destination="j75-h5-qfO" id="cF1-jf-5NA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QsS-xM-Z1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
