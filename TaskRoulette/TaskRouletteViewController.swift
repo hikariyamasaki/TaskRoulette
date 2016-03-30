@@ -10,18 +10,22 @@ import UIKit
 
 class TaskRouletteViewController: UIViewController {
     
-    let sepa = 6
+    var sepa = 6
     var rouletteView:UIView!
     var bgRouletteView:UIView!
+    var members = ["hikari","yu"]
+    var tasks = ["お風呂洗い","ご飯作る","洗濯物干す","洗濯物を畳む","布団を畳む","食器洗い"]
     
        override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sepa = tasks.count
         
         let width = self.view.frame.width
         let height = self.view.frame.height
         
         
-        bgRouletteView = RouletteView(frame: CGRectMake(0,0,width * 0.8,width * 0.8))
+        bgRouletteView = RouletteView(frame: CGRectMake(0,0,width * 0.95,width * 0.95))
         bgRouletteView.center = CGPointMake(width / 2, height / 2)
         bgRouletteView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         bgRouletteView.tag = 1
@@ -41,6 +45,7 @@ class TaskRouletteViewController: UIViewController {
              
         // ルーレットの初期化
         initRoulette(sepa)
+        initBgRoulette(sepa)
        
     }
 
@@ -59,7 +64,7 @@ class TaskRouletteViewController: UIViewController {
         
         // 回転数をランダムにするところ
         let n = Int(arc4random()) % sepa + 1
-        /*for i in 1..<(5 + n){
+        for i in 1..<(10 + n){
             
             // radianで回転角度を指定(90度).
             let angle:CGFloat = CGFloat(2 * M_PI / Double(sepa) * Double(i))
@@ -75,19 +80,20 @@ class TaskRouletteViewController: UIViewController {
                 completion: { (Bool) -> Void in
             })
             
-        }*/
+        }
         
-        
+        /*
         let animation = CABasicAnimation(keyPath: "transform.rotation")
         animation.toValue = 2 * M_PI / Double(sepa)
         animation.duration = 0.2 // 0.5秒でtoValue度回転
-        animation.repeatCount = Float(20 + n)   // 回数だけ繰り返す
+        animation.repeatCount = Float(1)
+        print(20 + n)// 回数だけ繰り返す
         //animation.cumulative = true         // 効果を累積
         
         // アニメーションの実行
         rouletteView.layer.addAnimation(animation, forKey: "Routation")
         
-        
+        */
     }
     
 
@@ -140,8 +146,8 @@ class TaskRouletteViewController: UIViewController {
         
         
         // 2.数字を配置
-        let Max = Double(sepa)
-        let angle = 2 * M_PI / Max
+        let Max = sepa
+        let angle = 2 * M_PI / Double(Max)
         
         let r = self.rouletteView.frame.size.width * 0.4
         
@@ -149,11 +155,20 @@ class TaskRouletteViewController: UIViewController {
             let x = r * CGFloat(cos(Double(i) * angle)) + self.rouletteView.frame.size.width / 2.0
             let y = r * CGFloat(sin(Double(i) * angle)) + self.rouletteView.frame.size.height / 2.0
             
-            let number = UILabel(frame: CGRectMake(0, 0, 40, 40))
+            let number = UILabel(frame: CGRectMake(0, 0, 77, 40))
             number.backgroundColor = UIColor.whiteColor()
-            number.text = "\(i + 1)"
+            number.text = members[i % members.count]
             
-            // number.sizeToFit()
+            if i == Max - 1{
+                number.text = "2人で"
+                
+            }
+            
+            
+            // textを中央揃えにする
+            number.textAlignment = .Center
+            
+            number.sizeToFit()
             number.layer.cornerRadius = number.frame.size.width / 2.0
             number.center = CGPointMake(x, y)
             
@@ -170,6 +185,51 @@ class TaskRouletteViewController: UIViewController {
         }
         
     }
+    
+    func initBgRoulette(sepa:Int){
+        
+        // 1.ルーレットの円
+        // layerに cornerRadiusを指定し、円にする。
+        //self.rouletteView.layer.cornerRadius = self.rouletteView.frame.size.width / 2.0
+        //self.rouletteView.backgroundColor = UIColor.lightGrayColor()
+        
+        
+        // 2.数字を配置
+        let Max = Double(sepa)
+        let angle = 2 * M_PI / Max
+        
+        let r = self.bgRouletteView.frame.size.width * 0.4
+        
+        for i in 0 ..< Int(Max) {
+            let x = r * CGFloat(cos(Double(i) * angle)) + self.bgRouletteView.frame.size.width / 2.0
+            let y = r * CGFloat(sin(Double(i) * angle)) + self.bgRouletteView.frame.size.height / 2.0
+            
+            let number = UILabel(frame: CGRectMake(0, 0, 77, 40))
+            number.backgroundColor = UIColor.whiteColor()
+            number.text = tasks[i]
+            
+            
+            // textを中央揃えにする
+            number.textAlignment = .Center
+            
+            number.sizeToFit()
+            number.layer.cornerRadius = number.frame.size.width / 2.0
+            number.center = CGPointMake(x, y)
+            
+            // for ios5 and ios6
+            // NSTextAlignmentCenter, UITextAlignmentCenter
+            //number.textAlignment = 1
+            
+            // 斜めに
+            let transform:CGAffineTransform = CGAffineTransformMakeRotation(CGFloat(Double(i) * angle + M_PI_2))
+            number.transform = transform
+            
+            self.bgRouletteView.addSubview(number)
+            
+        }
+        
+    }
+
 }
 
 
