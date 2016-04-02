@@ -4,7 +4,6 @@
 //
 //  Created by 山崎ひかり on 2016/03/27.
 //  Copyright © 2016年 hikariyamasaki. All rights reserved.
-//
 
 import UIKit
 
